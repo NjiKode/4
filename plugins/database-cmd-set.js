@@ -20,5 +20,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['cmd'].map(v => 'set' + v + ' <teks>')
 handler.tags = ['database']
 handler.command = ['setcmd']
+handler.owner = true
 
 export default handler
