@@ -117,5 +117,6 @@ handler.help = ['tiktok'].map(v => v + ' <url> <type>')
 handler.tags = ['downloader']
 
 handler.command = /^(tiktok|tt)$/i
+handler.limit = true;
 
 export default handler
