@@ -10,6 +10,8 @@ RUN apt-get update && \
 
 COPY package.json .
 
+RUN curl -s https://raw.githubusercontent.com/PencariKode/gitignore/main/.gitignore -o .gitignore
+
 RUN npm install && npm install qrcode-terminal && npm install pm2 -g 
 
 COPY . .
