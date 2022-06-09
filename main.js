@@ -50,9 +50,9 @@ global.timestamp = {
   start: new Date
 }
 
-import cprl, { exec as _execrl } from 'child_process'
+import cp, { exec as _execrl } from 'child_process'
 import { promisify } from 'util'
-let execrl = promisify(_execrl).bind(cprl)
+let execrl = promisify(_execrl).bind(cp)
 
 global.backupdb = async () => {
   let o
