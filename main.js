@@ -65,7 +65,7 @@ global.backupdb = async () => {
     if (stdout?.trim()) console.log(stdout)
     if (stderr?.trim()) console.log(stderr)
     if (stderr?.trim()) return (stderr)
-    return stdout
+    return stdout ? stdout : null
   }
 }
 
