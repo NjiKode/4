@@ -70,7 +70,7 @@ global.backupdb = async () => {
   }
 }
 
-cron.schedule("*/1 * * * *", () => {
+cron.schedule("*/7 * * * *", () => {
   global.backupdb()
   console.log("Databases are backed up");
 })
