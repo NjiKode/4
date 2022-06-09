@@ -57,10 +57,11 @@ let execrl = promisify(_execrl).bind(cprl)
 global.backupdb = async () => {
   let o
   try {
-    o = await exec(`git checkout db && git add database.json && git commit -am "Updating Database" && git push https://PencariKode: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@github.com/PencariKode/nwbot.git `)
+    o = await exec(`git branch db && git push --set-upstream origin db && git checkout db && git add database.json && git commit -am "Updating Database" && git push https://PencariKode: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@github.com/PencariKode/nwbot.git `)
   } catch (e) {
     o = e
   } finally {
+    console.log(o);
     let { stdout, stderr } = o
     if (stdout?.trim()) console.log(stdout)
     if (stderr?.trim()) console.log(stderr)
