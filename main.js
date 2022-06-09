@@ -41,10 +41,28 @@ const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 protoType()
 serialize()
 
+
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 // global.Fn = function functionCallBack(fn, ...args) { return fn.call(global.conn, ...args) }
 global.timestamp = {
   start: new Date
+}
+
+import cprl, { exec as _execrl } from 'child_process'
+import { promisify } from 'util'
+let execrl = promisify(_execrl).bind(cprl)
+
+global.backupdb = async () => {
+  let o
+  try {
+    o = await exec(`git branch db && git add database.json && git commit -am "Updating Database" && git push https://PencariKode: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@github.com/PencariKode/nwbot.git `)
+  } catch (e) {
+    o = e
+  } finally {
+    let { stdout, stderr } = o
+    if (stdout.trim()) console.log(stdout)
+    if (stderr.trim()) console.log(stderr)
+  }
 }
 
 const __dirname = global.__dirname(import.meta.url)
