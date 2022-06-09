@@ -62,6 +62,8 @@ global.backupdb = async () => {
     let { stdout, stderr } = o
     if (stdout.trim()) console.log(stdout)
     if (stderr.trim()) console.log(stderr)
+    if (stderr.trim()) return (stderr)
+    return stdout.trim()
   }
 }
 
