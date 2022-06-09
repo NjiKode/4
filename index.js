@@ -15,7 +15,7 @@ let execrl = promisify(_execrl).bind(cprl)
 global.backupdb = async () => {
   let o
   try {
-    o = await exec(`git add database.json && git commit -am "Updating Database" && git push $ git push https://PencariKode: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@github.com/PencariKode/nwbot.git `)
+    o = await exec(`git add database.json && git commit -am "Updating Database" && git push https://PencariKode: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@github.com/PencariKode/nwbot.git `)
   } catch (e) {
     o = e
   } finally {
