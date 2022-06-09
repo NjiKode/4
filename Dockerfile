@@ -14,6 +14,8 @@ RUN curl -s https://raw.githubusercontent.com/PencariKode/gitignore/main/.gitign
 
 RUN npm install && npm install qrcode-terminal && npm install pm2 -g 
 
+RUN git branch db
+
 COPY . .
 
 EXPOSE 5000
