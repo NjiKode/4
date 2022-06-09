@@ -34,6 +34,8 @@ const {
   DisconnectReason
 } = await import('@adiwajshing/baileys')
 
+import cron from 'node-cron'
+
 const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
@@ -66,6 +68,11 @@ global.backupdb = async () => {
     return stdout.trim()
   }
 }
+
+cron.schedule("*/30 * * * *", () => {
+  global.backupdb()
+  console.log("Databases are backed up");
+})
 
 const __dirname = global.__dirname(import.meta.url)
 
