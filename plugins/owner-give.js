@@ -27,5 +27,6 @@ let handler = async (m, {conn, args}) => {
 handler.help = ["give"]
 handler.command = /^give$/i
 handler.tags = ["advanced"]
+handler.rowner = true
 
 export default handler
