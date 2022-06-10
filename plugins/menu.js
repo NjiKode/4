@@ -19,7 +19,6 @@ let tags = {
   'canvas': '𝐂𝐚𝐧𝐯𝐚𝐬',
   'fun': '𝐅𝐮𝐧',
   'database': '𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞',
-  'quran': '𝐀𝐥 𝐐𝐮𝐫\'𝐚𝐧',
   'owner': '𝐎𝐰𝐧𝐞𝐫',
   'maker': '𝐌𝐚𝐤𝐞𝐫',
   'advanced': '𝐀𝐝𝐯𝐚𝐧𝐜𝐞𝐝',
@@ -56,7 +55,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({})))
     let { exp, limit, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
-    let name = await conn.getName(m.sender)
+    let name = await global.db.data.users[m.sender]?.name || await conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
