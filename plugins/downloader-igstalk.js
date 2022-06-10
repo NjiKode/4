@@ -1,6 +1,7 @@
 import { instagramStalk } from '@bochilteam/scraper'
 
 let handler= async (m, { args, usedPrefix, command }) => {
+  return m.reply(`Fitur *Downloader* Sedang Error!`);
     if (!args[0]) throw `Example use ${usedPrefix}${command} <username>`
     const {
         username,

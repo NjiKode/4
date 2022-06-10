@@ -2,6 +2,7 @@ import { tiktokdl, tiktokdlv2 } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
+  return m.reply(`Fitur *Downloader* Sedang Error!`);
 	let type = (args[1] || '').toLowerCase()
     let _type = (args[1] || '').toLowerCase()
   
