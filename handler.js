@@ -281,9 +281,8 @@ export async function handler(chatUpdate) {
                 global.db.data.chats[m.chat] = {}
             if (chat) {
                 if (!('isBanned' in chat))
-                    chat.isBanned = false 
-                if (!('nsfw' in chat))
-                    chat.nsfw = false
+                    chat.isBanned = false
+                if (!('nsfw' in chat)) chat.nsfw = false
                 if (!('welcome' in chat))
                     chat.welcome = false
                 if (!('detect' in chat))
@@ -360,7 +359,7 @@ export async function handler(chatUpdate) {
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
-        const isNsfw = isROwner || db.data.chats[m.chat]?.nsfw !== true
+        const isNsfw = isOwner || db.data.chats[m.chat].nsfw !== true
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
@@ -446,6 +445,7 @@ export async function handler(chatUpdate) {
                     isAdmin,
                     isBotAdmin,
                     isPrems,
+                    isNsfw,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -516,7 +516,8 @@ export async function handler(chatUpdate) {
                 }
                 if (plugin.nsfw && !isNsfw) { // NSFW Only
                     fail('nsfw', m, this)
-                    continue
+                    continue 
+                }
                 if (plugin.private && m.isGroup) { // Private Chat Only
                     fail('private', m, this)
                     continue
