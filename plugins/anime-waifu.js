@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 let list = ["waifu", "neko", "cuddle", "cry", "hug", "kiss", "lick"]
 
-let handler = async (m, { conn, usedPrefix, args }) => {
+/*let handler = async (m, { conn, usedPrefix, args }) => {
     
     let type = (args[0] || '').toLowerCase()
     
@@ -43,10 +43,21 @@ let handler = async (m, { conn, usedPrefix, args }) => {
     }
       
 return
+}*/
+
+let handler = async (m, {conn, usedPrefix, command}) => {
+    let type = command.toLowerCase()
+    let res = await fetch(`https://api.waifu.pics/sfw/${type}`)
+    if (!res.ok) throw await res.text()
+    let json = await res.json()
+    if (!json.url) throw 'Error, Silahkan Coba Lagi Nanti!'
+    let buffer = await fetch(json.url).then(a => a.buffer())
+    conn.sendButton(m.chat, 'Pecinta kartun!', author, buffer, [[`${type}`, `${usedPrefix}anime ${type}`]], m)
 }
-handler.help = ['anime']
+
+handler.help = ['waifu', "neko"]
 handler.tags = ['internet']
-handler.command = /^(anime)$/i
-handler.limit = true
+handler.command = /^(waifu|neko)$/i
+//handler.limit = true
 //MADE IN ERPAN 1140 BERKOLABORASI DENGAN BTS
 export default handler
