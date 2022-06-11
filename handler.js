@@ -359,7 +359,7 @@ export async function handler(chatUpdate) {
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
-        const isNsfw = /*isOwner || */db.data.chats[m.chat].nsfw === true
+        const isNsfw = isOwner || db.data.chats[m.chat].nsfw === true
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
