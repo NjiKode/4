@@ -10,13 +10,13 @@ let handler = async (m, { conn, usedPrefix, args }) => {
       {
         title: "Select 1 Category",
         rows: [
-          {title: "Waifu", rowId: ".anime waifu", description: "Get random waifu image"},
-          {title: "Neko", rowId: ".anime neko", description: "Get random neko image"},
-          {title: "Cuddle", rowId: ".anime cuddle", description: "Get random anime cuddle image"},
-          {title: "Cry", rowId: ".anime cry", description: "Get random anime crying image"},
-          {title: "Hug", rowId: ".anime hug", description: "Get random anime hugging image"},
-          {title: "Kiss", rowId: ".anime kiss", description: "Get random anime kissing image"},
-          {title: "lick", rowId: ".anime lick", description: "Get random anime licking image"},
+          {title: "Waifu", rowId: ".anime waifu"},
+          {title: "Neko", rowId: ".anime neko"},
+          {title: "Cuddle", rowId: ".anime cuddle"},
+          {title: "Cry", rowId: ".anime cry"},
+          {title: "Hug", rowId: ".anime hug"},
+          {title: "Kiss", rowId: ".anime kiss"},
+          {title: "lick", rowId: ".anime lick"},
         ]
       }
     ]
@@ -34,7 +34,8 @@ let handler = async (m, { conn, usedPrefix, args }) => {
     if (!res.ok) throw await res.text()
     let json = await res.json()
     if (!json.url) throw 'Error, Silahkan Coba Lagi Nanti!'
-    conn.sendButton(m.chat, 'Pecinta kartun!', author, json.url, [[`${type}`, `${usedPrefix}anime ${type}`]], m)
+    let buffer = await fetch(json.url).then(a => a.buffer())
+    conn.sendButton(m.chat, 'Pecinta kartun!', author, buffer, [[`${type}`, `${usedPrefix}anime ${type}`]], m)
     
     } else {
       
