@@ -21,8 +21,8 @@ let handler = async (m, { conn, usedPrefix, args }) => {
       }
     ]
     const listMessage = {
-      text: "Please Select One Category!",
-      footer: author,
+      text: "Please Select One Category!\nNote: Some image may contain NSFW content",
+      footer: "",
       title: "━━━━「 RANDOM ANIME 」━━━━",
       buttonText: "Click Here!",
       sections
