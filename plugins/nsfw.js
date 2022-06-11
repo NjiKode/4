@@ -22,3 +22,5 @@ handler.command = /^ass|ahegao|bdsm|blowjob|cuckold|cum|ero|nsfw(foot|glass|neko
 handler.nsfw = true
 handler.limit = true
 handler.level = 10
+
+export default handler
