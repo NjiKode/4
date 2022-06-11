@@ -281,7 +281,9 @@ export async function handler(chatUpdate) {
                 global.db.data.chats[m.chat] = {}
             if (chat) {
                 if (!('isBanned' in chat))
-                    chat.isBanned = false
+                    chat.isBanned = false 
+                if (!('nsfw' in chat))
+                    chat.nsfw = false
                 if (!('welcome' in chat))
                     chat.welcome = false
                 if (!('detect' in chat))
@@ -309,6 +311,7 @@ export async function handler(chatUpdate) {
             } else
                 global.db.data.chats[m.chat] = {
                     isBanned: false,
+                    nsfw: false,
                     welcome: false,
                     detect: false,
                     sWelcome: '',
@@ -357,6 +360,7 @@ export async function handler(chatUpdate) {
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
+        const isNsfw = isROwner || db.data.chats[m.chat]?.nsfw !== true
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
@@ -510,6 +514,9 @@ export async function handler(chatUpdate) {
                     fail('admin', m, this)
                     continue
                 }
+                if (plugin.nsfw && !isNsfw) { // NSFW Only
+                    fail('nsfw', m, this)
+                    continue
                 if (plugin.private && m.isGroup) { // Private Chat Only
                     fail('private', m, this)
                     continue
@@ -551,6 +558,7 @@ export async function handler(chatUpdate) {
                     isAdmin,
                     isBotAdmin,
                     isPrems,
+                    isNsfw,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -749,7 +757,8 @@ global.dfail = (type, m, conn) => {
         private: '[ ❗ ] Hanya Private Chat',
         admin: '[ ❗ ] Hanya Admin Group',
         botAdmin: '[ ❗ ] Hanya Bot Admin',
-        restrict: '[ ❗ ] Fitur ini dinonaktifkan'
+        restrict: '[ ❗ ] Fitur ini dinonaktifkan',
+        nsfw: '[ ❗ ] Fitur NSFW dinonaktifkan\nKetik */enable nsfw* untuk mengaktifkan fitur ini'
     }[type]
     if (msg) return conn.reply(m.chat, msg, m, { contextInfo: { externalAdReply: {title: global.wm, body: '404 Access denied!', sourceUrl: global.sig, thumbnail: fs.readFileSync('./thumbnail.jpg') }}})
     
