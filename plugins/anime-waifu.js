@@ -4,6 +4,8 @@ let list = ["waifu", "neko", "cuddle", "cry", "hug", "kiss", "lick"]
 
 let handler = async (m, { conn, usedPrefix, args }) => {
     
+    let type = (args[0] || '').toLowerCase()
+    
     let sections = [
       {
         title: "Select 1 Category",
