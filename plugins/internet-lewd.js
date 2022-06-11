@@ -6,9 +6,11 @@ let handler = async(m, { conn }) => {
     await conn.sendFile(m.chat, img, 'lewn.png', '', m)
 }
 handler.help = ['lewd']
-handler.tags = ['internet']
+handler.tags = ['nsfw']
 handler.command = /^lewd$/i
 handler.nsfw = true
+handler.limit = true
+handler.level = 5
 export default handler
 function gr() {
   return Math.floor(Math.random() * 400) + 10;
