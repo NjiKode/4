@@ -52,7 +52,7 @@ let handler = async (m, {conn, usedPrefix, command}) => {
     let json = await res.json()
     if (!json.url) throw 'Error, Silahkan Coba Lagi Nanti!'
     let buffer = await fetch(json.url).then(a => a.buffer())
-    conn.sendButton(m.chat, 'Pecinta kartun!', author, buffer, [[`${type}`, `${usedPrefix}anime ${type}`]], m)
+    conn.sendButton(m.chat, 'Pecinta kartun!', author, buffer, [[`${type}`, `${usedPrefix}${type}`]], m)
 }
 
 handler.help = ['waifu', "neko"]
