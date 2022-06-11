@@ -8,7 +8,7 @@ let handler = async(m, { conn }) => {
 handler.help = ['lewd']
 handler.tags = ['internet']
 handler.command = /^lewd$/i
-handler.disabled = true
+handler.nsfw = true
 export default handler
 function gr() {
   return Math.floor(Math.random() * 400) + 10;
