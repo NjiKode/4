@@ -9,7 +9,7 @@ let handler = async (m, {conn, command}) => {
   try {
     let result = await fetch(api).then(a => a.json()).then(b => b.result)
     let buffer = await fetch(result).then(c => c.buffer())
-    await conn.sendFile(m.chat, buffer, `nsfw-${command}.png`, '', m)
+    await conn.sendFile(m.chat, buffer, `nsfw-${command}.png`, `[ ❗ ] NSFW [ ❗ ]\nIngat dosa bang!`, m)
   } catch (err) {
     m.reply(`Terjadi Error, Silahkan Coba Lagi!`)
     return console.log(err)
