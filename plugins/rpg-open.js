@@ -1,3 +1,9 @@
+const sleep = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
+    clearTimeout(this)
+    resolve()
+}, ms))
+
+
 const rewards = {
     common: {
         money: 101,
@@ -99,10 +105,12 @@ ${Object.keys(crateReward).filter(v => v && crateReward[v] && !/legendary|pet|my
 *${global.rpg.emoticon(reward)}${reward}:* ${crateReward[reward]}
 `.trim()).join('\n')}
 `.trim())
+await sleep(500)
     let diamond = crateReward.diamond, mythic = crateReward.mythic, pet = crateReward.pet, legendary = crateReward.legendary, emerald = crateReward.emerald
     if (mythic || diamond) m.reply(`
 Congrats you got a rare item, which is ${diamond ? `*${diamond}* ${rpg.emoticon('diamond')}diamond` : ''}${diamond && mythic ? 'and ' : ''}${mythic ? `*${mythic}* ${rpg.emoticon('mythic')}mythic` : ''}
 `.trim())
+await sleep(500)
     if (pet || legendary || emerald) m.reply(`
 Congrats you got a epic item, which is ${pet ? `*${pet}* ${rpg.emoticon('pet')}pet` : ''}${pet && legendary && emerald ? ', ' : (pet && legendary || legendary && emerald || emerald && pet) ? 'and ' : ''}${legendary ? `*${legendary}* ${rpg.emoticon('legendary')}legendary` : ''}${pet && legendary && emerald ? 'and ' : ''}${emerald ? `*${emerald}* ${rpg.emoticon('emerald')}emerald` : ''}
 `.trim())
