@@ -1,5 +1,5 @@
 
-let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
+let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner, is18yo }) => {
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
@@ -175,6 +175,10 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 'nsfw':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
+          if (!is18yo) {
+            global.dfail('notOld', m, conn)
+            throw false
+          }
           global.dfail('admin', m, conn)
           throw false
         }

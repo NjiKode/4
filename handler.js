@@ -360,6 +360,7 @@ export async function handler(chatUpdate) {
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
         const isNsfw = isOwner || db.data.chats[m.chat].nsfw === true
+        const is18yo = db.data.users[m.sender].age >= 18 || false
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
@@ -446,6 +447,7 @@ export async function handler(chatUpdate) {
                     isBotAdmin,
                     isPrems,
                     isNsfw,
+                    is18yo,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -518,6 +520,10 @@ export async function handler(chatUpdate) {
                     fail('nsfw', m, this)
                     continue 
                 }
+                if (plugin.nsfw && isNsfw && !is18yo) { // NSFW Only
+                    fail('notOld', m, this)
+                    continue 
+                }
                 if (plugin.private && m.isGroup) { // Private Chat Only
                     fail('private', m, this)
                     continue
@@ -560,6 +566,7 @@ export async function handler(chatUpdate) {
                     isBotAdmin,
                     isPrems,
                     isNsfw,
+                    is18yo,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -759,6 +766,7 @@ global.dfail = (type, m, conn) => {
         admin: '[ ❗ ] Hanya Admin Group',
         botAdmin: '[ ❗ ] Hanya Bot Admin',
         restrict: '[ ❗ ] Fitur ini dinonaktifkan',
+        notOld: '[ ❗ ] Kamu belum cukup umur untuk menggunakan fitur ini',
         nsfw: '[ ❗ ] Fitur NSFW dinonaktifkan\nKetik */enable nsfw* untuk mengaktifkan fitur ini'
     }[type]
     if (msg) return conn.reply(m.chat, msg, m, { contextInfo: { externalAdReply: {title: global.wm, body: '404 Access denied!', sourceUrl: global.sig, thumbnail: fs.readFileSync('./thumbnail.jpg') }}})
