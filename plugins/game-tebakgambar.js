@@ -24,7 +24,8 @@ Bonus: ${poin} XP
                 ['tebakgambar', '/tebakgambar']
             ], conn.tebakgambar[id][0])
             delete conn.tebakgambar[id]
-        }, timeout)
+        }, timeout),
+        m.sender
     ]
 }
 handler.help = ['tebakgambar']

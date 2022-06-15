@@ -20,7 +20,7 @@ Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' '
         msg: await this.sendButton(m.chat, caption, author, null, [['Nyerah', 'nyerah']], m),
         ...json,
         terjawab: Array.from(json.jawaban, () => false),
-        winScore,
+        winScore, maker: m.sender
     }
 }
 handler.help = ['family100']

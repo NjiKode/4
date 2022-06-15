@@ -1,6 +1,6 @@
 import similarity from 'similarity'
 const threshold = 0.72
-export async function before(m) {
+export async function before(m, {isOwner}) {
     let id = m.chat
     if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !m.text || !/Ketik.*hint/i.test(m.quoted.text) || /.*hint/i.test(m.text))
         return !0
@@ -9,7 +9,7 @@ export async function before(m) {
         return conn.sendButton(m.chat, 'Soal itu telah berakhir', author, null, buttonTebakgambar, m)
     if (m.quoted.id == this.tebakgambar[id][0].id) {
         let isSurrender = /^((me)?nyerah|surr?ender)$/i.test(m.text)
-        if (isSurrender) {
+        if (isSurrender && (m.sender === this.tebakgambar[id][4] || isOwner)) {
             clearTimeout(this.tebakgambar[id][3])
             delete this.tebakgambar[id]
             return conn.sendButton(m.chat, '*Yah Menyerah :( !*', author, null, buttonTebakgambar, m)

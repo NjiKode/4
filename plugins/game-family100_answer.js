@@ -1,13 +1,13 @@
 import similarity from 'similarity'
 const threshold = 0.72 // semakin tinggi nilai, semakin mirip
-export async function before(m) {
+export async function before(m, {isOwner}) {
     this.game = this.game ? this.game : {}
     let id = 'family100_' + m.chat
     if (!(id in this.game))
         return !0
     let room = this.game[id]
     let text = m.text.toLowerCase().replace(/[^\w\s\-]+/, '')
-    let isSurrender = /^((me)?nyerah|surr?ender)$/i.test(m.text)
+    let isSurrender = (/^((me)?nyerah|surr?ender)$/i.test(m.text) && (m.sender === room.maker || isOwner))
     if (!isSurrender) {
         let index = room.jawaban.indexOf(text)
         if (index < 0) {
