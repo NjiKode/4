@@ -13,7 +13,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let caption = `
 ${json.soal}
 Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik ${usedPrefix}teka untuk bantuan
+Ketik ${usedPrefix}tkata untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.tebakkata[id] = [
