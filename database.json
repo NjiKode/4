@@ -1,7 +1,7 @@
 {
   "users": {
     "6283104397901@s.whatsapp.net": {
-      "exp": 647125,
+      "exp": 657448,
       "limit": 100,
       "lastclaim": 0,
       "registered": true,
@@ -6398,7 +6398,7 @@
       "roboxp": 0
     },
     "6282387438756@s.whatsapp.net": {
-      "exp": 47,
+      "exp": 61,
       "limit": 100,
       "lastclaim": 0,
       "registered": false,
@@ -20430,7 +20430,7 @@
       "limitjoin": 0
     },
     "6283115863741@s.whatsapp.net": {
-      "exp": 10963,
+      "exp": 11011,
       "limit": 98,
       "lastclaim": 0,
       "registered": true,
@@ -20576,7 +20576,7 @@
       "roboxp": 0
     },
     "6281289262452@s.whatsapp.net": {
-      "exp": 7,
+      "exp": 25,
       "limit": 100,
       "lastclaim": 0,
       "registered": false,
@@ -21375,7 +21375,7 @@
       "roboxp": 0
     },
     "62895702661180@s.whatsapp.net": {
-      "exp": 915,
+      "exp": 989,
       "limit": 99,
       "lastclaim": 0,
       "registered": false,
@@ -23180,7 +23180,7 @@
       "roboxp": 0
     },
     "6285236163216@s.whatsapp.net": {
-      "exp": 1638,
+      "exp": 1851,
       "limit": 100,
       "lastclaim": 0,
       "registered": false,
@@ -23191,7 +23191,7 @@
       "afkReason": "",
       "banned": false,
       "warn": 0,
-      "level": 2,
+      "level": 3,
       "role": "Beginner",
       "autolevelup": true,
       "money": 0,
@@ -23967,7 +23967,7 @@
       "limitjoin": 0
     },
     "6281368143417@s.whatsapp.net": {
-      "exp": 11,
+      "exp": 21,
       "limit": 100,
       "lastclaim": 0,
       "registered": false,
@@ -24896,7 +24896,7 @@
       "limitjoin": 0
     },
     "6285719190799@s.whatsapp.net": {
-      "exp": 2843,
+      "exp": 2994,
       "limit": 100,
       "lastclaim": 0,
       "registered": false,
@@ -25920,7 +25920,7 @@
     "120363022899572138@g.us": {
       "isBanned": false,
       "nsfw": false,
-      "welcome": false,
+      "welcome": true,
       "detect": false,
       "sWelcome": "",
       "sBye": "",
@@ -26260,10 +26260,10 @@
       "lastSuccess": 1655215806306
     },
     "owner-exec.js": {
-      "total": 143,
-      "success": 143,
-      "last": 1655254129149,
-      "lastSuccess": 1655254129149
+      "total": 145,
+      "success": 145,
+      "last": 1655254679514,
+      "lastSuccess": 1655254679514
     },
     "levelup.js": {
       "total": 31,
@@ -26326,10 +26326,10 @@
       "lastSuccess": 1655212832475
     },
     "enable.js": {
-      "total": 36,
-      "success": 32,
-      "last": 1655251464027,
-      "lastSuccess": 1655251464027
+      "total": 42,
+      "success": 36,
+      "last": 1655254742016,
+      "lastSuccess": 1655254721567
     },
     "group-admin.js": {
       "total": 4,
@@ -26512,10 +26512,10 @@
       "lastSuccess": 1654875968488
     },
     "anonymous_chat.js": {
-      "total": 11,
-      "success": 11,
-      "last": 1655211389738,
-      "lastSuccess": 1655211389738
+      "total": 13,
+      "success": 13,
+      "last": 1655254548007,
+      "lastSuccess": 1655254548007
     },
     "downloader-facebook.js": {
       "total": 9,
@@ -26584,10 +26584,10 @@
       "lastSuccess": 1655213617139
     },
     "nsfw.js": {
-      "total": 134,
-      "success": 134,
-      "last": 1655213940056,
-      "lastSuccess": 1655213940056
+      "total": 135,
+      "success": 135,
+      "last": 1655254542825,
+      "lastSuccess": 1655254542825
     },
     "sticker-toimg2.js": {
       "total": 4,
@@ -26608,16 +26608,16 @@
       "lastSuccess": 1655013751747
     },
     "games-tebakkata.js": {
-      "total": 406,
-      "success": 392,
-      "last": 1655253737550,
-      "lastSuccess": 1655253737550
+      "total": 408,
+      "success": 394,
+      "last": 1655254521104,
+      "lastSuccess": 1655254521104
     },
     "games-tebakkata_hint.js": {
-      "total": 168,
-      "success": 163,
-      "last": 1655213687712,
-      "lastSuccess": 1655213687712
+      "total": 170,
+      "success": 165,
+      "last": 1655254551360,
+      "lastSuccess": 1655254551360
     },
     "sticker-colong.js": {
       "total": 3,
@@ -26698,9 +26698,9 @@
       "lastSuccess": 1655253758527
     },
     "game-tekateki_hint.js": {
-      "total": 10,
+      "total": 11,
       "success": 3,
-      "last": 1655253762889,
+      "last": 1655254528321,
       "lastSuccess": 1655253762889
     },
     "game-susunkata.js": {
