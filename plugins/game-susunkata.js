@@ -12,15 +12,16 @@ let handler = async (m, {conn, usedPrefix}) => {
 ${json.soal}
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}skata untuk bantuan
+_Reply pesan ini untuk menjawab_
 Bonus: ${poin} XP
 `.trim()
   conn.susunkata[id] = [
-    await conn.sendButton(m.chat, caption, author, null, [["Bantuan", `${usedPrefix}skata`]], m),
+    await conn.sendButton(m.chat, caption, author, null, [["Bantuan", `${usedPrefix}skata`], ["Nyerah", "menyerah"]], m),
     json, poin,
     setTimeout(async () => {
       if (conn.susunkata[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, author, null, [["Susun Kata", `${usedPrefix}susunkata`]], conn.susunkata[id][0])
       delete conn.susunkata[id]
-    }, timeout)
+    }, timeout), m.sender
   ]
   
 }

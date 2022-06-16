@@ -9,18 +9,19 @@ let handler = async (m, {conn, usedPrefix}) => {
   if (id in conn.asahotak) return conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0])
   let json = await asahotak()
   let caption = `
-${json.soal}
+\`\`\`${json.soal}\`\`\`
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}asah untuk bantuan
 Bonus: ${poin} XP
+_Reply pesan ini untuk menjawab_
 `.trim()
   conn.asahotak[id] = [
-    await conn.sendButton(m.chat, caption, author, null, [["Bantuan", `${usedPrefix}asah`]], m),
+    await conn.sendButton(m.chat, caption, author, null, [["Bantuan", `${usedPrefix}asah`], ["Nyerah", "menyerah"]], m),
     json, poin,
     setTimeout(async () => {
       if (conn.asahotak[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, author, null, [["Asah Otak", `${usedPrefix}asahotak`]], conn.asahotak[id][0])
       delete conn.asahotak[id]
-    }, timeout)
+    }, timeout), m.sender
   ]
   
 }

@@ -1,11 +1,12 @@
 import similarity from 'similarity'
 const threshold = 0.72
 let handler = m => m
-handler.before = async function (m) {
+handler.before = async function (m, {isOwner}) {
     let id = m.chat
     if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*who/i.test(m.quoted.text)) return !0
     this.siapakahaku = this.siapakahaku ? this.siapakahaku : {}
     if (!(id in this.siapakahaku)) return conn.sendButton(m.chat, 'Soal itu telah berakhir', author, ['siapakahaku', '/siapakahaku'], m)
+    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/.test(m.text) && (m.sender === this.siapakahaku[id][4] || isOwner))
     if (m.quoted.id == this.siapakahaku[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.siapakahaku[id][1]))
         // m.reply(JSON.stringify(json, null, '\t'))
@@ -15,6 +16,10 @@ handler.before = async function (m) {
             conn.sendButton(m.chat, `*Benar!*\n+${this.siapakahaku[id][2]} XP`, author, ['siapakahaku', '/siapakahaku'], m)
             clearTimeout(this.siapakahaku[id][3])
             delete this.siapakahaku[id]
+        } else if (isSurrend) {
+          await this.sendButton(m.chat, `Yaahh Menyerah :(\nJawaban yg benar adalah *${json.jawaban}*`, author, null, [['Siapakah Aku', '.siapakahaku']], m)
+          clearTimeout(this.siapakahaku[id][3])
+          delete this.siapakahaku[id]
         } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
         else m.reply(`*Salah!*`)
     }
