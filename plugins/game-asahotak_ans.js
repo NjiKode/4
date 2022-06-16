@@ -7,7 +7,7 @@ export async function before(m, {isOwner}) {
     this.asahotak = this.asahotak ? this.asahotak : {}
     if (!(id in this.asahotak))
         return m.reply('Soal itu telah berakhir')
-    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/.test(m.text) && (m.sender === this.asahotak[id][4] || isOwner))
+    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/i.test(m.text) && (m.sender === this.asahotak[id][4] || isOwner))
     if (m.quoted.id == this.asahotak[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.asahotak[id][1]))
         if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {

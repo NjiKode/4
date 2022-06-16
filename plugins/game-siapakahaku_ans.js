@@ -6,7 +6,7 @@ handler.before = async function (m, {isOwner}) {
     if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*who/i.test(m.quoted.text)) return !0
     this.siapakahaku = this.siapakahaku ? this.siapakahaku : {}
     if (!(id in this.siapakahaku)) return conn.sendButton(m.chat, 'Soal itu telah berakhir', author, ['siapakahaku', '/siapakahaku'], m)
-    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/.test(m.text) && (m.sender === this.siapakahaku[id][4] || isOwner))
+    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/i.test(m.text) && (m.sender === this.siapakahaku[id][4] || isOwner))
     if (m.quoted.id == this.siapakahaku[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.siapakahaku[id][1]))
         // m.reply(JSON.stringify(json, null, '\t'))

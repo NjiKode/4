@@ -7,7 +7,7 @@ export async function before(m, {isOwner}) {
     this.tekateki = this.tekateki ? this.tekateki : {}
     if (!(id in this.tekateki))
         return m.reply('Soal itu telah berakhir')
-    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/.test(m.text) && (m.sender === this.tekateki[id][4] || isOwner))
+    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/i.test(m.text) && (m.sender === this.tekateki[id][4] || isOwner))
     if (m.quoted.id == this.tekateki[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.tekateki[id][1]))
         if (m.text.toLowerCase().replace(/ -/g, "") == json.jawaban.toLowerCase().trim().replace(/ -/g, "")) {

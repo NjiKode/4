@@ -7,7 +7,7 @@ export async function before(m, {isOwner}) {
     this.tebakkata = this.tebakkata ? this.tebakkata : {}
     if (!(id in this.tebakkata))
         return conn.sendButton(m.chat, 'Soal itu telah berakhir', author, ['tebakkata', '/tebakkata'], m)
-    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/.test(m.text) && (m.sender === this.tebakkata[id][4] || isOwner))
+    let isSurrend = (/(me)?nyerah|surrend(e(r|d))?/i.test(m.text) && (m.sender === this.tebakkata[id][4] || isOwner))
     if (m.quoted.id == this.tebakkata[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.tebakkata[id][1]))
         // m.reply(JSON.stringify(json, null, '\t'))
