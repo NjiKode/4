@@ -42,7 +42,7 @@
         "@adiwajshing/baileys": "github:adiwajshing/baileys",
         "@bochilteam/scraper": "github:BochilTeam/scraper",
         "awesome-phonenumber": "^2.70.0",
-        "api-growtopia": "^0.6.9",
+        //"api-growtopia": "^0.6.9",
         "axios": "^0.24.0",
         "cfonts": "^2.10.0",
         "chalk": "^5.0.0",
