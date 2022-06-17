@@ -18,6 +18,6 @@ COPY . .
 
 EXPOSE 5000
 
-RUN git branch db
+RUN git branch db && git config --global user.name "PanjiGTPS" && git config --global user.email "deparipanji@gmail.com" && ls
 
 CMD ["node", "index.js"]
