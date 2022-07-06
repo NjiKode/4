@@ -42,6 +42,11 @@ global.author = process.env.AUTHOR
 
 global.multiplier = 100 // The higher, The harder levelup
 
+global.ghname = process.env.GHNAME
+global.ghpat = process.env.GHPAT
+global.ghpats = process.env.GHPATS
+global.ghrepo = process.env.GHREPO
+
 global.rpg = {
   emoticon(string) {
     string = string.toLowerCase()
