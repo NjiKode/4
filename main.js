@@ -66,11 +66,11 @@ global.backupdb = async () => {
     o = e
   } finally {
     console.log(o);
-    let { stdout, stderr } = o
-    if (stdout?.trim()) console.log(stdout)
-    if (stderr?.trim()) console.log(stderr)
-    if (stderr?.trim()) return (stderr)
-    return stdout ? stdout : null
+    let { stdout, stderr, err } = o
+    if (stdout) console.log(stdout)
+    if (stderr) console.log(stderr)
+    if (err) console.log(err)
+    return stdout ? stdout : stderr ? stderr : err ? err : null
   }
 }
 
