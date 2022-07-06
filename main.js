@@ -57,7 +57,11 @@ let execrl = promisify(_execrl).bind(cp)
 global.backupdb = async () => {
   let o
   try {
-    o = await execrl(`git checkout db && git add database.json && git commit -m "Updating Database" && git push -f https://PanjiGTPS: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@github.com/PanjiGTPS/wnbot.git`)
+    if (existsSync(`./.git/index.lock`)) {
+    o = await execrl(`rm .git/index.lock && git checkout db && git add database.json && git commit -am "Updating Database" && git push -f https://${ghname}:${ghpat}@github.com/${ghname}/${ghrepo}.git`)
+    } else {
+    o = await execrl(`git checkout db && git add database.json && git commit -am "Updating Database" && git push -f https://${ghname}:${ghpat}@github.com/${ghname}/${ghrepo}.git`)
+    }
   } catch (e) {
     o = e
   } finally {
