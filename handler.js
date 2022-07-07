@@ -16,6 +16,44 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function (
     resolve()
 }, ms))
 
+Object.defineProperty(Number.prototype, 'getRan', {
+  value: function(z) {
+    if (isNaN(z)) {
+      return Math.floor(Math.random() * (this+1))
+    } else {
+      if (z >= this) throw new Error(`Parameters cannot be greater than or equal to the main value`)
+      return (Math.floor(Math.random() * (this+1-z))) + z
+    }
+  },
+  enumerable: false
+});
+Object.defineProperty(Array.prototype, 'getRan', {
+  value: function() {
+    if (Array.isArray(this[0]) && this[0][0] === true) {
+      if (this[0][2]) {
+        if (Math.random() * 100 < this[0][1]) return this[1].getRan(this[0][2])
+        else return this[2] ? this[2] : 0
+      } else if (this[0][2] === null) {
+        let newNum = this[1].getRan(this[0][3] ? this[0][3] : 0)
+        if (Math.random() * 100 < this[0][1]) return newNum 
+        else return this[2] ? this[2] : 0
+      } else {
+        if (Math.random() * 100 < this[0][1]) return this[1]
+        else return this[2] ? this[2] : 0
+      }
+    } else if (Array.isArray(this[0]) && this[0][0] === false) {
+      return this[1].getRan(this[0][1])
+    } else if (this[0] === true) {
+      let z = [...this]
+      z.shift()
+      return z.getRan().getRan()
+    } else {
+      return this[Math.floor(Math.random() * this.length)]
+    }
+  },
+  enumerable: false
+});
+
 /**
  * Handle messages upsert
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 

@@ -10,13 +10,13 @@ const items = {
             money: 4,
         },
         wood: {
-            money: 700
+            money: 850
         },
         rock: {
             money: 850
         },
         string: {
-            money: 400
+            money: 850
         },
         iron: { 
         	money: 3000
@@ -51,13 +51,13 @@ const items = {
             money: 2
         },
         wood: {
-            money: 600
+            money: 750
         },
         rock: {
             money: 750
         },
         string: {
-            money: 300
+            money: 750
         },
         iron: {
             money: 2500
