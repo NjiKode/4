@@ -371,7 +371,7 @@ export async function handler(chatUpdate) {
         }
         if (opts['nyimak'])
             return
-        if (!(m.fromMe || isOwner) && opts['self'])
+        if (!(m.fromMe || ([conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender))) && opts['self'])
             return
         if (opts['pconly'] && m.chat.endsWith('g.us'))
             return
