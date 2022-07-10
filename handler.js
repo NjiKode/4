@@ -627,9 +627,10 @@ export async function handler(chatUpdate) {
                             console.error(e)
                         }
                     }
-                    if (m.limit)
+                    if (m.limit) {
                         await delay(250)
                         m.reply(+m.limit + ' Limit terpakai ✔️')
+                    }
                 }
                 break
             }
