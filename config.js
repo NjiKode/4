@@ -4,6 +4,13 @@ import { watchFile, unwatchFile } from 'fs'
 import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 
+function decrypt64(arg) {
+  if (arg.startsWith("base64")) arg = arg.replace(/base64/i, "")
+  let res = Buffer.from(arg, "base64").toString()
+  return res
+}
+global.decrypt64 = decrypt64
+
 global.donasi = process.env.DONASI
 global.thumbmenu = process.env.THUMB_MENU
 global.sig = process.env.LINK_IG
@@ -43,7 +50,7 @@ global.author = process.env.AUTHOR
 global.multiplier = 100 // The higher, The harder levelup
 
 global.ghname = process.env.GHNAME
-global.ghpat = process.env.GHPAT
+global.ghpat = decrypt64(process.env.GHPAT)
 global.ghpats = process.env.GHPATS
 global.ghrepo = process.env.GHREPO
 
